@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { requests } from "@/data/mock-data";
 
 type WebMcpTool = {
   name: string;
@@ -31,13 +30,16 @@ export function WebMcpTools() {
     void register({
       name: "find_municipal_requests",
       title: "Buscar solicitações municipais",
-      description: "Busca solicitações mockadas por protocolo, título ou bairro e retorna os registros correspondentes.",
+      description: "Busca solicitações reais por protocolo, título ou bairro e retorna os registros correspondentes.",
       inputSchema: { type: "object", properties: { query: { type: "string", minLength: 2 } }, required: ["query"], additionalProperties: false },
       annotations: { readOnlyHint: true, untrustedContentHint: false },
-      execute(input) {
-        const query = typeof input === "object" && input !== null && "query" in input ? String(input.query).trim().toLowerCase() : "";
+      async execute(input) {
+        const query = typeof input === "object" && input !== null && "query" in input ? String(input.query).trim() : "";
         if (query.length < 2) throw new Error("A busca precisa ter pelo menos dois caracteres.");
-        return requests.filter((item) => `${item.protocol} ${item.title} ${item.neighborhood}`.toLowerCase().includes(query)).slice(0, 8).map(({ protocol, title, status, priority, neighborhood }) => ({ protocol, title, status, priority, neighborhood }));
+        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+        if (!response.ok) throw new Error("Não foi possível consultar as solicitações.");
+        const data = await response.json() as { items: Array<{ id: string; type: string; title: string; subtitle: string; href: string }> };
+        return data.items.filter((item) => item.type === "Solicitação").slice(0, 8);
       },
     });
     void register({

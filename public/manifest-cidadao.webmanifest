@@ -1,0 +1,52 @@
+{
+  "id": "/cidadao",
+  "name": "CidadeFácil Cidadão",
+  "short_name": "CidadeFácil",
+  "description": "Solicite serviços municipais e acompanhe seus protocolos em Seropédica.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "/cidadao?origem=pwa",
+  "scope": "/cidadao/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f766e",
+  "categories": ["government", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/icons/cidadao/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/cidadao/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/cidadao/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nova solicitação",
+      "short_name": "Nova solicitação",
+      "description": "Registrar uma nova ocorrência urbana",
+      "url": "/cidadao/nova-solicitacao?origem=atalho",
+      "icons": [{ "src": "/icons/cidadao/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Consultar protocolo",
+      "short_name": "Consultar",
+      "description": "Acompanhar uma solicitação existente",
+      "url": "/cidadao/consultar?origem=atalho",
+      "icons": [{ "src": "/icons/cidadao/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

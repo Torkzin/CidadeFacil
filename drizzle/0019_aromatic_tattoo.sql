@@ -1,0 +1,2 @@
+ALTER TABLE "municipality_settings" ADD COLUMN "citizen_response_hours" integer DEFAULT 72 NOT NULL;--> statement-breakpoint
+ALTER TABLE "request_communications" ADD COLUMN "response_due_at" timestamp with time zone;

@@ -12,6 +12,15 @@
 
 # testing
 /coverage
+/.local-postgres/
+/.tmp-postgres/
+/storage/uploads/
+/backups/
+
+# local development and generated artifacts
+/.codex-presentation/
+/output/
+/tmp/
 
 # next.js
 /.next/
@@ -32,6 +41,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+!.env.production.example
+!.env.staging.example
 
 # vercel
 .vercel

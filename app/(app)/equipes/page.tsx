@@ -1,11 +1,4 @@
-import { CheckCircle2, Clock3, MoreHorizontal, Plus, Users, Wrench } from "lucide-react";
-import { teams } from "@/data/mock-data";
-import { PageHeading } from "@/components/common/page-heading";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-
-export default function TeamsPage() {
-  return <div className="space-y-6"><PageHeading title="Equipes" description="Gerencie equipes de campo e acompanhe a carga de trabalho." actions={<Button><Plus className="size-4" /> Nova equipe</Button>} /><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{teams.map((team) => { const busy = Math.min(95, 42 + team.active * 5); return <Card key={team.id} className="gap-4 shadow-none"><CardHeader className="flex-row items-start justify-between"><div className="flex gap-3"><span className="grid size-10 place-items-center rounded-xl bg-cyan-50 text-cyan-700"><Wrench className="size-5" /></span><div><CardTitle>{team.name}</CardTitle><p className="mt-1 text-xs text-slate-500">{team.department}</p></div></div><Button size="icon-sm" variant="ghost"><MoreHorizontal /></Button></CardHeader><CardContent><div className="mb-5 flex items-center justify-between"><Badge variant="outline" className={team.status === "Disponível" ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-blue-200 bg-blue-50 text-blue-700"}><span className="mr-1.5 size-1.5 rounded-full bg-current" />{team.status}</Badge><span className="flex items-center gap-1.5 text-xs text-slate-500"><Users className="size-3.5" /> {team.members} membros</span></div><div className="grid grid-cols-2 gap-3"><div className="rounded-lg border p-3"><Clock3 className="size-4 text-amber-600" /><p className="mt-2 text-xl font-semibold">{team.active}</p><p className="text-xs text-slate-500">Chamados ativos</p></div><div className="rounded-lg border p-3"><CheckCircle2 className="size-4 text-emerald-600" /><p className="mt-2 text-xl font-semibold">{team.completed}</p><p className="text-xs text-slate-500">Concluídos</p></div></div><div className="mt-5"><div className="mb-2 flex justify-between text-xs"><span className="text-slate-500">Capacidade ocupada</span><strong>{busy}%</strong></div><Progress value={busy} className="h-1.5" /></div></CardContent></Card>; })}</div></div>;
-}
+import { TeamsManager } from "@/components/management/teams-manager";
+import { requireCurrentUser } from "@/lib/auth/session";
+import { redirect } from "next/navigation";
+export default async function TeamsPage() { const user = await requireCurrentUser(); if (user.role !== "Administrador") redirect("/acesso-negado"); return <TeamsManager />; }

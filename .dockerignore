@@ -1,0 +1,14 @@
+.git
+.next
+.local-postgres
+.tmp-postgres
+node_modules
+storage/uploads
+backups
+.env
+.env.*
+!.env.example
+!.env.production.example
+!.env.staging.example
+npm-debug.log*
+README.md

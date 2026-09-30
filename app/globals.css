@@ -85,14 +85,104 @@
 }
 
 @layer base {
-  * { @apply border-border outline-ring/50; }
-  html { @apply font-sans; }
-  body { @apply bg-background text-foreground antialiased; }
-  button, a, input, select, textarea { @apply transition-colors; }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    @apply transition-colors;
+  }
 }
 
 @layer utilities {
-  .panel { @apply rounded-xl border bg-card shadow-[0_1px_2px_rgba(15,23,42,0.03)]; }
-  .data-grid { background-image: linear-gradient(to right, color-mix(in oklab, var(--border) 50%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in oklab, var(--border) 50%, transparent) 1px, transparent 1px); background-size: 32px 32px; }
-  .scrollbar-subtle { scrollbar-width: thin; scrollbar-color: color-mix(in oklab, var(--muted-foreground) 28%, transparent) transparent; }
+  .panel {
+    @apply rounded-xl border bg-card shadow-[0_1px_2px_rgba(15,23,42,0.03)];
+  }
+  .data-grid {
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in oklab, var(--border) 50%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--border) 50%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 32px 32px;
+  }
+  .scrollbar-subtle {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(
+        in oklab,
+        var(--muted-foreground) 28%,
+        transparent
+      )
+      transparent;
+  }
+}
+
+.cidadefacil-map-marker {
+  background: transparent;
+  border: 0;
+}
+
+.cidadefacil-map-marker > span {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 3px solid white;
+  border-radius: 50% 50% 50% 0;
+  background: var(--marker-color, #0e7490);
+  box-shadow: 0 4px 12px rgb(15 23 42 / 35%);
+  color: white;
+  font-size: 19px;
+  line-height: 1;
+  transform: rotate(-45deg);
+}
+
+.cidadefacil-map-marker > span > b {
+  font-weight: normal;
+  transform: rotate(45deg);
+}
+
+.cidadefacil-route-marker {
+  background: transparent;
+  border: 0;
+}
+
+.cidadefacil-route-marker > span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 3px solid white;
+  border-radius: 9999px;
+  background: #0e7490;
+  box-shadow: 0 3px 10px rgb(15 23 42 / 35%);
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.cidadefacil-route-marker > span.is-selected {
+  background: #be123c;
+  transform: scale(1.15);
+}
+
+@media (display-mode: standalone) {
+  .pwa-install-control {
+    display: none;
+  }
 }

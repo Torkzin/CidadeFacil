@@ -65,6 +65,8 @@ export interface MunicipalRequest {
   status: RequestStatus;
   date: string;
   updatedAt: string;
+  resolutionDueAt?: string | null;
+  concludedAt?: string | null;
   address: string;
   citizen: Citizen;
 }

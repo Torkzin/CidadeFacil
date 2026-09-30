@@ -1,0 +1,3 @@
+"use client";
+export default function GlobalError({ reset }: { error: Error & { digest?: string }; reset: () => void }) { return <html lang="pt-BR"><body><main className="grid min-h-screen place-items-center bg-slate-50 px-4"><div className="max-w-md text-center"><p className="text-sm font-semibold text-rose-700">Erro inesperado</p><h1 className="mt-2 text-3xl font-semibold">Não foi possível carregar esta página</h1><p className="mt-3 text-slate-600">Tente novamente. Se o problema continuar, procure o suporte municipal.</p><button onClick={reset} className="mt-6 rounded-lg bg-cyan-800 px-4 py-2 text-sm font-medium text-white">Tentar novamente</button></div></main></body></html>; }
+
